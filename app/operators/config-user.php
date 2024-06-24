@@ -40,7 +40,17 @@
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (array_key_exists('csrf_token', $_POST) && isset($_POST['csrf_token']) && dalo_check_csrf_token($_POST['csrf_token'])) {
-
+            // validate length of sha2
+            if (
+                    array_key_exists('CONFIG_SHA2_LENGTH', $_POST) &&
+                    !empty(trim($_POST['CONFIG_SHA2_LENGTH'])) &&
+                    in_array(strtolower(trim($_POST['CONFIG_SHA2_LENGTH'])), array("224", "256", "384", "512"))
+               ) {
+                $configValues['CONFIG_SHA2_LENGTH'] = strtolower(trim($_POST['CONFIG_SHA2_LENGTH']));
+            } else {
+                $invalid_input['CONFIG_SHA2_LENGTH'] = "Length of SHA2";
+            }
+            
             // validate allow Cleartext-Password attributes
             if (
                     array_key_exists('CONFIG_DB_PASSWORD_ENCRYPTION', $_POST) &&
@@ -108,6 +118,14 @@
                                  );
 
     $input_descriptors0 = array();
+
+    $input_descriptors0[] = array(
+                                    "type" => "select",
+                                    "options" => array( "224", "256", "384", "512" ),
+                                    "caption" => "Length of SHA2",
+                                    "name" => 'CONFIG_SHA2_LENGTH',
+                                    "selected_value" => $configValues['CONFIG_SHA2_LENGTH'],
+                                 );
 
     $input_descriptors0[] = array(
                                     "type" => "select",
