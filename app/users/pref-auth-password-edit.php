@@ -41,6 +41,7 @@
     // if $attribute refers to a non-supported
     // hashing method, it just returns $value
     function hashPasswordAttribute($attribute, $value) {
+        global $configValues;
         if (preg_match("/-Password$/", $attribute) === false) {
             return false;
         }
