@@ -62,6 +62,9 @@ function hashPasswordAttribute($attribute, $value) {
         case "NT-Password":
             return strtoupper(bin2hex(mhash(MHASH_MD4, iconv('UTF-8', 'UTF-16LE', $value))));
 
+        case "SHA2-Password":
+            return hash("sha".$configValues['CONFIG_SHA2_LENGTH'], $value)
+        
         default:
         // TODO
         //~ case "CHAP-Password":
