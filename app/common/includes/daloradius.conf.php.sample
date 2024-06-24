@@ -112,7 +112,7 @@ $configValues['CONFIG_NODE_STATUS_MONITOR_HARD_DELAY'] = '15';
 $configValues['CONFIG_USER_TRAFFIC_MONITOR_ENABLED'] = 'no';
 $configValues['CONFIG_USER_TRAFFIC_MONITOR_HARDLIMIT'] = '1073741824';
 $configValues['CONFIG_USER_TRAFFIC_MONITOR_SOFTLIMIT'] = '536870912';
-
+$configValues['CONFIG_SHA2_LENGTH'] = '256';
 
 
 // invoice templates - optional
