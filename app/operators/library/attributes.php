@@ -45,6 +45,7 @@ function is_passwordlike_attribute($attribute) {
  * @return string|bool The hashed version of the value, or false if not applicable.
  */
 function hashPasswordAttribute($attribute, $value) {
+    global $configValues;
     if (!is_passwordlike_attribute($attribute)) {
         return false;
     }
